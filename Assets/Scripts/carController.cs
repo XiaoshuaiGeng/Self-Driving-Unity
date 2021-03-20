@@ -23,7 +23,7 @@ public class carController : MonoBehaviour
     {
         while(i < population)
         {
-            Instantiate(car, SpawnPoint.transform.position, Quaternion.identity);
+            Instantiate(car, SpawnPoint.transform.position, Quaternion.Euler(0,0,-90));
             i++;
         }
 
