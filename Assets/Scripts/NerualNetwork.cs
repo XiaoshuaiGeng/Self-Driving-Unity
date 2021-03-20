@@ -11,7 +11,7 @@ public class NerualNetwork : MonoBehaviour
     public Matrix<float> inputlayer = Matrix<float>.Build.Dense(1, 3);
     public List<Matrix<float>> hiddenLayers = new List<Matrix<float>>();
     public Matrix<float> outputLayer = Matrix<float>.Build.Dense(1, 2);
-    public List<Matrix<float>> weights = newList<Matrix<float>>();
+    public List<Matrix<float>> weights = new List<Matrix<float>>();
     public List<float> biases = new List<float>();
     public float fitness;
 
@@ -32,8 +32,8 @@ public class NerualNetwork : MonoBehaviour
             //WEIGHTS
             if (i == 0)
             {
-                Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayers);
-                weights.Add(inputToH1);
+               // Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayers);
+               // weights.Add(inputToH1);
             }
 
             Matrix<float> HiddenToHidden = Matrix<float>.Build.Dense(hiddenNaeutonNum, hiddenNaeutonNum);
