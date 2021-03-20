@@ -78,15 +78,17 @@ public class NerualNetwork : MonoBehaviour
         }
 
         outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) +biases[biases.Count - 1]).PointwiseTanh();
-        
-        
-        //First output is acceleration and second output is steering
-        return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
-    }
 
-    private float Sigmoid(float s)
+        
+        
+//         //First output is acceleration and second output is steering
+//         return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
+//     }
+
+private float Sigmoid(float s)
     {
         return (float)(1 /(1 + Math.Exp(-s)));
     }
 
-}
+
+// }
