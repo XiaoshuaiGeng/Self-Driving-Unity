@@ -81,14 +81,14 @@ public class NerualNetwork : MonoBehaviour
 
         
         
-//         //First output is acceleration and second output is steering
-//         return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
-//     }
+        //First output is acceleration and second output is steering
+        return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
+    }
 
-private float Sigmoid(float s)
+    private float Sigmoid(float s)
     {
         return (float)(1 /(1 + Math.Exp(-s)));
     }
 
 
-// }
+}
