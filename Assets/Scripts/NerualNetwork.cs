@@ -32,8 +32,8 @@ public class NerualNetwork : MonoBehaviour
             //WEIGHTS
             if (i == 0)
             {
-               // Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayers);
-               // weights.Add(inputToH1);
+                Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayerNum);
+                weights.Add(inputToH1);
             }
 
             Matrix<float> HiddenToHidden = Matrix<float>.Build.Dense(hiddenNaeutonNum, hiddenNaeutonNum);
@@ -74,7 +74,7 @@ public class NerualNetwork : MonoBehaviour
 
         for (int i = 1; i < hiddenLayers.Count; i++)
         {
-            hiddenLayers[i] = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1])+ biases[biases.Count - 1].PointwiseTanh();
+            hiddenLayers[i] = ((hiddenLayers[i - 1] * weights[i])+ biases[i]).PointwiseTanh();
         }
 
         outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) +biases[biases.Count - 1]).PointwiseTanh();
@@ -86,7 +86,7 @@ public class NerualNetwork : MonoBehaviour
 
     private float Sigmoid(float s)
     {
-        return (1 / (1 + Math.Exp(-s)));
+        return (float)(1 /(1 + Math.Exp(-s)));
     }
 
 }
