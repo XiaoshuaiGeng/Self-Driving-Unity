@@ -22,17 +22,19 @@ public class keyboardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                // GetAxisRaw is unsmoothed input -1, 0, 1
-        float acceleration = Input.GetAxis("Vertical") * accelerationRate;
-        float steeringPower = Input.GetAxis("Horizontal");
+        if (!hitBorder){
+            float acceleration = Input.GetAxis("Vertical") * accelerationRate;
+            float steeringPower = Input.GetAxis("Horizontal");
 
-        // get the object steering direction
-        float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
+            // get the object steering direction
+            float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
 
-        rb.rotation += steeringPower * steeringRate * rb.velocity.magnitude * -direction;
- 
-        // accelerate object according to its local transform value
-        rb.AddRelativeForce(Vector2.up * acceleration);
-        rb.AddRelativeForce(Vector2.right * rb.velocity.magnitude * steeringPower/2);   
+            rb.rotation += steeringPower * steeringRate * rb.velocity.magnitude * -direction;
+    
+            // accelerate object according to its local transform value
+            rb.AddRelativeForce(Vector2.up * acceleration);
+            rb.AddRelativeForce(Vector2.right * rb.velocity.magnitude * steeringPower/2);   
+        }
+        
     }
 }

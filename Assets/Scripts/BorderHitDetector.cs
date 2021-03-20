@@ -15,4 +15,22 @@ public class BorderHitDetector : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D col){
+        // Debug.Log(col.tag);
+
+        // Car objects' tag has been set to "Player"
+        if (col.tag == "Player"){
+            
+            keyboardController motionController = col.GetComponent<keyboardController>();
+            motionController.hitBorder = true;
+
+            //set triggered object's velocity to zero
+            Rigidbody2D rd = col.GetComponent<Rigidbody2D>();
+            rd.velocity = Vector2.zero;
+            rd.angularVelocity = 0;
+            
+        }
+
+    }
 }
