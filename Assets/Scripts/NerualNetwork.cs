@@ -32,7 +32,7 @@ public class NerualNetwork : MonoBehaviour
             //WEIGHTS
             if (i == 0)
             {
-                Matrix<float> inputToH1 = Matrix<float>.Build.Densse(3, hiddenLayers);
+                Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayers);
                 weights.Add(inputToH1);
             }
 
@@ -62,9 +62,9 @@ public class NerualNetwork : MonoBehaviour
         }
     }
 
-    public (float, float) RunNetwork(float a, float b, float, c)
+    public (float, float) RunNetwork(float a, float b, float c)
     {
-        inputLayer[0, 0] = a;
+        inputlayer[0, 0] = a;
         inputlayer[0, 1] = b;
         inputlayer[0, 2] = c;
 
@@ -74,10 +74,10 @@ public class NerualNetwork : MonoBehaviour
 
         for (int i = 1; i < hiddenLayers.Count; i++)
         {
-            hiddenLayers[i] = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1])+[biases.Count - 1].PointwiseTanh();
+            hiddenLayers[i] = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1])+ biases[biases.Count - 1].PointwiseTanh();
         }
 
-        outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) +[biases.Count - 1]).PointwiseTanh();
+        outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) +biases[biases.Count - 1]).PointwiseTanh();
         
         
         //First output is acceleration and second output is steering
