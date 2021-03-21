@@ -396,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653159546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.95, y: -2.81, z: 0}
+  m_LocalPosition: {x: -4.69, y: -4.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -499,6 +499,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1956020983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8870880541138466639, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+  m_PrefabInstance: {fileID: 6993288288080123637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1956020984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956020983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8364b48fd3b3349e5aa9fccea8f87fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 0}
+  accelerationRate: 0
+  steeringRate: 0
+  hitBorder: 0
 --- !u!1001 &6993288288080123637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,11 +533,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_LocalPosition.z

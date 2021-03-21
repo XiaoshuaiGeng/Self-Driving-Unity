@@ -25,6 +25,7 @@ public class carController : MonoBehaviour
         {
             Instantiate(car, SpawnPoint.transform.position, Quaternion.Euler(0,0,-90));
             i++;
+
         }
 
 
