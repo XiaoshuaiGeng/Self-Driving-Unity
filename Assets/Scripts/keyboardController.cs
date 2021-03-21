@@ -33,8 +33,8 @@ public class keyboardController : MonoBehaviour
         // Debug.DrawRay(transform.position,transform.up-transform.right, Color.cyan );
         if (!hitBorder){
             // print("Vertical: " + Input.GetAxis("Vertical") + ", Horizontal: " + Input.GetAxis("Horizontal"));
-            float acceleration = Random.Range(-1, 2) * accelerationRate;
-            float steeringPower = Random.Range(-1, 2);//Input.GetAxis("Horizontal");
+            float acceleration = Random.Range(0f, 1f) * accelerationRate;
+            float steeringPower = Random.Range(-1f, 1f);//Input.GetAxis("Horizontal");
 
             // get the object steering direction
             float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
