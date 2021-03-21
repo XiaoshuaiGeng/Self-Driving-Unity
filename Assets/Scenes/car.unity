@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &148351134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8870880541138466639, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+  m_PrefabInstance: {fileID: 6993288288080123637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &148351136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148351134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8364b48fd3b3349e5aa9fccea8f87fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 0}
+  accelerationRate: 0
+  steeringRate: 0
+  hitBorder: 0
 --- !u!1 &1392724100
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,8 +331,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1739161389
-  m_SortingLayer: 1
+  m_SortingLayerID: 1835448737
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 642b363d99ea37c4aabdf9b93cd668a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -506,6 +527,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 148351138, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 148351138, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_RootOrder
       value: 3
