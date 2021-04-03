@@ -15,6 +15,18 @@ public class NerualNetwork : MonoBehaviour
     public List<float> biases = new List<float>();
     public float fitness;
 
+
+/*TODO
+    Add default constructor & copy constructor for neuralnetwork
+*/
+    // public NerualNetwork(NerualNetwork copy){
+    //     inputlayer = copy.inputlayer;
+    //     hiddenLayers = new List<Matrix<float>>(copy.hiddenLayers);
+
+    // }
+
+    
+
     public void Initialize(int hiddenLayerNum, int hiddenNeuronNum) 
     {
         inputlayer.Clear();
@@ -88,4 +100,50 @@ public class NerualNetwork : MonoBehaviour
     }
 
 
+    public NerualNetwork InitialiseCopy(int hiddenLayerCount, int hiddenNeuronCount)
+    {
+        NerualNetwork network = new NerualNetwork();
+
+        List<Matrix<float>> newWeights = new List<Matrix<float>>();
+
+        for (int i = 0; i < this.weights.Count; i++)
+        {
+            Matrix<float> currentWeight = Matrix<float>.Build.Dense(weights[i].RowCount, weights[i].ColumnCount);
+
+            for (int x = 0; x < currentWeight.RowCount; x++)
+            {
+                for (int y = 0; y < currentWeight.ColumnCount; y++)
+                {
+                    currentWeight[x, y] = weights[i][x, y];
+                }
+            }
+
+            newWeights.Add(currentWeight);
+        }
+
+        List<float> newBiases = new List<float>();
+
+        newBiases.AddRange(biases);
+
+        network.weights = newWeights;
+        network.biases = newBiases;
+
+        network.InitialiseHidden(hiddenLayerCount, hiddenNeuronCount);
+
+        return network;
+    }
+
+    public void InitialiseHidden(int hiddenLayerCount, int hiddenNeuronCount)
+    {
+        inputlayer.Clear();
+        hiddenLayers.Clear();
+        outputLayer.Clear();
+
+        for (int i = 0; i < hiddenLayerCount + 1; i++)
+        {
+            Matrix<float> newHiddenLayer = Matrix<float>.Build.Dense(1, hiddenNeuronCount);
+            hiddenLayers.Add(newHiddenLayer);
+        }
+
+    }
 }

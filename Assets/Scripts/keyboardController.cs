@@ -109,12 +109,10 @@ public class keyboardController : MonoBehaviour
             calculateFitness();
             //update position value
             lastPosition = transform.position;
-
-
             timeLived += Time.deltaTime;
         }
         else {
-            Reset();
+            Death();
         }
     }
 
@@ -141,7 +139,11 @@ public class keyboardController : MonoBehaviour
         Fitness = distanceTravelled * distanceMultipler + averageSpeed * avgSpeedMultiplier;
 
         if (timeLived > 20 && Fitness < 40) {
-            Reset();
+            Death();
+        }
+
+        if(Fitness > 1000){
+            Death();
         }
     }
 
@@ -161,23 +163,32 @@ public class keyboardController : MonoBehaviour
 
         if (hit = Physics2D.Raycast(transform.position, leftDirection))
         {
-            leftSensor = hit.distance / 10;
-            print("Left Hit: " + leftSensor);
+            leftSensor = hit.distance / 6;
+            // print("Left Hit: " + leftSensor);
             Debug.DrawRay(transform.position, leftDirection, Color.green);
-            print(hit.collider.gameObject.name);
+            // print(hit.collider.gameObject.name);
         }
 
         if (hit = Physics2D.Raycast(transform.position, frontDirection))
         {
-            frontSensor = hit.distance / 10;
-            print("Front Hit: " + frontSensor);
+            frontSensor = hit.distance /6;
+            // print("Front Hit: " + frontSensor);
             Debug.DrawRay(transform.position, frontDirection, Color.green);
         }
         if (hit = Physics2D.Raycast(transform.position, leftDirection))
         {
-            rightSensor = hit.distance / 10;
-            print("Right Hit: " + rightSensor);
+            rightSensor = hit.distance /6;
+            // print("Right Hit: " + rightSensor);
             Debug.DrawRay(transform.position, rightDirection, Color.green);
         }
+    }
+
+    public void ResetWithNeuralNetwork(NerualNetwork network){
+        neuralNetwork = network;
+        Reset();
+    }
+
+    private void Death(){
+        GameObject.FindObjectOfType<CarGenesController>().Death(Fitness, neuralNetwork);
     }
 }
