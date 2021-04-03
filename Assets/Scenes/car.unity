@@ -154,11 +154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 148351134}
   carController: {fileID: 0}
-  population: 100
-  mutationRate: 0.05
-  numOfBestAgentSelctions: 8
-  numOfWorstAgentSelections: 3
-  numberOfChildrenCrossovered: 0
+  population: 85
+  mutationRate: 0.3
+  numOfBestAgentSelctions: 5
+  numOfWorstAgentSelections: 0
+  numberOfChildrenCrossovered: 20
   currentGeneration: 0
   currentGenome: 0
 --- !u!4 &80465768
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653159546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0653fbd25a81c41c09788a5fed2d5a12, type: 3}
   m_Name: 
@@ -617,6 +617,14 @@ PrefabInstance:
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1960292115568478883, guid: 9c8581b470eb549dbaa5ea404dfb5332, type: 3}
       propertyPath: m_LocalPosition.x

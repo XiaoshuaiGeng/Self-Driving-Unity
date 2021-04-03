@@ -30,6 +30,7 @@ public class keyboardController : MonoBehaviour
     private float distanceMultipler = 2.0f;
     [SerializeField]
     private float avgSpeedMultiplier = 0.5f;
+    private float sensorMultiplier = 0.3f;
 
     [Header("Data")]
     public float distanceTravelled;
@@ -136,15 +137,15 @@ public class keyboardController : MonoBehaviour
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         averageSpeed = distanceTravelled / timeLived;
 
-        Fitness = distanceTravelled * distanceMultipler + averageSpeed * avgSpeedMultiplier;
+        Fitness = (distanceTravelled * distanceMultipler) + (averageSpeed * avgSpeedMultiplier) + ((leftSensor + frontSensor + rightSensor) / 3 * sensorMultiplier);
 
-        if (timeLived > 20 && Fitness < 40) {
-            Death();
-        }
+        // if (timeLived > 20 && Fitness < 40) {
+        //     Death();
+        // }
 
-        if(Fitness > 1000){
-            Death();
-        }
+        // if(Fitness > 1000){
+        //     Death();
+        // }
     }
 
 

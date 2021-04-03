@@ -101,31 +101,39 @@ public class CarGenesController : MonoBehaviour
             
         }
 
-        for (int i = 0; i < numOfWorstAgentSelections; i++){
+        // for (int i = 0; i < numOfWorstAgentSelections; i++){
 
-            int last = neuralNetworkPopulation.Length - (i+1);
-            // last -= i;
+        //     int last = neuralNetworkPopulation.Length - (i+1);
+        //     // last -= i;
 
-            int f = Mathf.RoundToInt(neuralNetworkPopulation[last].fitness * 10);
+        //     int f = Mathf.RoundToInt(neuralNetworkPopulation[last].fitness * 10);
 
-            for (int c = 0; c < f; c++)
-            {
-                genePool.Add(last);
-            }
+        //     for (int c = 0; c < f; c++)
+        //     {
+        //         genePool.Add(last);
+        //     }
 
-        }
+        // }
 
         return newPopulation;
     }
 
+    // private NerualNetwork[] CrossoverPopulation(){
+    //     List<NerualNetwork> test = new List<NerualNetwork>(5);
+    // }
+
     private void Crossover(NerualNetwork[] newPopulation){
-        for (int i = 0; i < numberOfChildrenCrossovered; i+= 2){
+
+        
+        // for (int i = 0; i < numberOfChildrenCrossovered; i+= 2){
+        for (int i = naturalSelected; i < population - numberOfChildrenCrossovered; i++){
             int AIndex = i;
-            int BIndex = i + 1;
+            int BIndex = i;
 
             if (genePool.Count >= 1)
             {
                 for (int l = 0; l < 100; l++)
+                // while(true)
                 {
                     AIndex = genePool[Random.Range(0, genePool.Count)];
                     BIndex = genePool[Random.Range(0, genePool.Count)];
@@ -136,13 +144,13 @@ public class CarGenesController : MonoBehaviour
             }
 
             NerualNetwork Child1 = new NerualNetwork();
-            NerualNetwork Child2 = new NerualNetwork();
+            // NerualNetwork Child2 = new NerualNetwork();
 
             Child1.Initialize(carController.neuralLayers, carController.neurons);
-            Child2.Initialize(carController.neuralLayers, carController.neurons);
+            // Child2.Initialize(carController.neuralLayers, carController.neurons);
 
             Child1.fitness = 0;
-            Child2.fitness = 0;
+            // Child2.fitness = 0;
 
 
             for (int w = 0; w < Child1.weights.Count; w++)
@@ -151,11 +159,11 @@ public class CarGenesController : MonoBehaviour
                 if (Random.Range(0.0f, 1.0f) < 0.5f)
                 {
                     Child1.weights[w] = neuralNetworkPopulation[AIndex].weights[w];
-                    Child2.weights[w] = neuralNetworkPopulation[BIndex].weights[w];
+                    // Child2.weights[w] = neuralNetworkPopulation[BIndex].weights[w];
                 }
                 else
                 {
-                    Child2.weights[w] = neuralNetworkPopulation[AIndex].weights[w];
+                    // Child2.weights[w] = neuralNetworkPopulation[AIndex].weights[w];
                     Child1.weights[w] = neuralNetworkPopulation[BIndex].weights[w];
                 }
 
@@ -164,15 +172,15 @@ public class CarGenesController : MonoBehaviour
 
             for (int w = 0; w < Child1.biases.Count; w++)
             {
-
+                
                 if (Random.Range(0.0f, 1.0f) < 0.5f)
                 {
                     Child1.biases[w] = neuralNetworkPopulation[AIndex].biases[w];
-                    Child2.biases[w] = neuralNetworkPopulation[BIndex].biases[w];
+                    // Child2.biases[w] = neuralNetworkPopulation[BIndex].biases[w];
                 }
                 else
                 {
-                    Child2.biases[w] = neuralNetworkPopulation[AIndex].biases[w];
+                    // Child2.biases[w] = neuralNetworkPopulation[AIndex].biases[w];
                     Child1.biases[w] = neuralNetworkPopulation[BIndex].biases[w];
                 }
 
@@ -181,8 +189,8 @@ public class CarGenesController : MonoBehaviour
             newPopulation[naturalSelected] = Child1;
             naturalSelected++;
 
-            newPopulation[naturalSelected] = Child2;
-            naturalSelected++;
+            // newPopulation[naturalSelected] = Child2;
+            // naturalSelected++;
         }
     }
 
@@ -224,6 +232,21 @@ public class CarGenesController : MonoBehaviour
                     NerualNetwork temp = neuralNetworkPopulation[i];
                     neuralNetworkPopulation[i] = neuralNetworkPopulation[j];
                     neuralNetworkPopulation[j] = temp;
+                }
+            }
+        }
+    }
+    private void SortPopulation(NerualNetwork[] networks)
+    {
+        for (int i = 0; i < networks.Length; i++)
+        {
+            for (int j = i; j < networks.Length; j++)
+            {
+                if (networks[i].fitness < networks[j].fitness)
+                {
+                    NerualNetwork temp = networks[i];
+                    networks[i] = networks[j];
+                    networks[j] = temp;
                 }
             }
         }
