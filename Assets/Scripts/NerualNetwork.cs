@@ -15,7 +15,7 @@ public class NerualNetwork : MonoBehaviour
     public List<float> biases = new List<float>();
     public float fitness;
 
-    public void Initialise(int hiddenLayerNum, int hiddenNaeutonNum) 
+    public void Initialize(int hiddenLayerNum, int hiddenNeuronNum) 
     {
         inputlayer.Clear();
         hiddenLayers.Clear();
@@ -23,25 +23,24 @@ public class NerualNetwork : MonoBehaviour
         weights.Clear();
         biases.Clear();
 
-        for (int i = 0; i < hiddenLayerNum + 1; i++)
+        // matrix to map 3 input values to num of neurons
+        Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenNeuronNum);
+        weights.Add(inputToH1);
+        biases.Add(Random.Range(-1f, 1f));
+
+        for (int i = 0; i < hiddenLayerNum; i++)
         {
-            Matrix<float> f = Matrix<float>.Build.Dense(1, hiddenNaeutonNum);
+            Matrix<float> f = Matrix<float>.Build.Dense(1, hiddenNeuronNum);
             hiddenLayers.Add(f);
             biases.Add(Random.Range(-1f, 1f));
 
             //WEIGHTS
-            if (i == 0)
-            {
-                Matrix<float> inputToH1 = Matrix<float>.Build.Dense(3, hiddenLayerNum);
-                weights.Add(inputToH1);
-            }
-
-            Matrix<float> HiddenToHidden = Matrix<float>.Build.Dense(hiddenNaeutonNum, hiddenNaeutonNum);
+            Matrix<float> HiddenToHidden = Matrix<float>.Build.Dense(hiddenNeuronNum, hiddenNeuronNum);
             weights.Add(HiddenToHidden);
 
         }
 
-        Matrix<float> OutputWeight = Matrix<float>.Build.Dense(hiddenNaeutonNum, 2);
+        Matrix<float> OutputWeight = Matrix<float>.Build.Dense(hiddenNeuronNum, 2);
         weights.Add(OutputWeight);
         biases.Add(Random.Range(-1f, 1f));
 
@@ -79,10 +78,8 @@ public class NerualNetwork : MonoBehaviour
 
         outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) +biases[biases.Count - 1]).PointwiseTanh();
 
-        
-        
         //First output is acceleration and second output is steering
-        return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
+        return (Sigmoid(outputLayer[0, 0]), outputLayer[0, 1]);
     }
 
     private float Sigmoid(float s)
