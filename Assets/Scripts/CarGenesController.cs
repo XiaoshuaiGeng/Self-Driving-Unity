@@ -132,8 +132,8 @@ public class CarGenesController : MonoBehaviour
 
             if (genePool.Count >= 1)
             {
-                // for (int l = 0; l < 100; l++)
-                while(true)
+                for (int l = 0; l < 100; l++)
+                // while(true)
                 {
                     AIndex = genePool[Random.Range(0, genePool.Count)];
                     BIndex = genePool[Random.Range(0, genePool.Count)];
@@ -144,7 +144,7 @@ public class CarGenesController : MonoBehaviour
             }
 
             NerualNetwork Child1 = new NerualNetwork();
-            // NerualNetwork Child2 = new NerualNetwork();
+            NerualNetwork Child2 = new NerualNetwork();
 
             Child1.Initialize(carController.neuralLayers, carController.neurons);
             // Child2.Initialize(carController.neuralLayers, carController.neurons);
@@ -207,7 +207,7 @@ public class CarGenesController : MonoBehaviour
 
     private Matrix<float> MutateMatrix(Matrix<float> matrix){
 
-        int randomPoints = Random.Range(1, (matrix.RowCount * matrix.ColumnCount) / 7);
+        int randomPoints = Random.Range(1, (matrix.RowCount * matrix.ColumnCount) / 5);
 
         Matrix<float> C = matrix;
 

@@ -29,7 +29,7 @@ public class keyboardController : MonoBehaviour
     [SerializeField]
     private float distanceMultipler = 4.0f;
     [SerializeField]
-    private float avgSpeedMultiplier = 1.5f;
+    private float avgSpeedMultiplier = 0.5f;
     private float sensorMultiplier = 1f;
 
     [Header("Data")]
@@ -68,8 +68,8 @@ public class keyboardController : MonoBehaviour
         Physics2D.queriesStartInColliders = false;
 
         neuralNetwork = GetComponent<NerualNetwork>();
-        neuralLayers = 1;
-        neurons = 3;
+        neuralLayers = 3;
+        neurons = 10;
 
         neuralNetwork.Initialize(neuralLayers, neurons);
     }
@@ -91,11 +91,12 @@ public class keyboardController : MonoBehaviour
             updateSensors();
             var (accelarationInput, steeringInput) = neuralNetwork.RunNetwork(leftSensor, frontSensor, rightSensor);
 
+            float acceleration = accelarationInput * accelerationRate;
+            float steeringPower = steeringInput;
+            //Input.GetAxis("Horizontal");
             // print("Vertical: " + Input.GetAxis("Vertical") + ", Horizontal: " + Input.GetAxis("Horizontal"));
             //float acceleration = Random.Range(0f, 1f) * accelerationRate;
             //float steeringPower = Random.Range(-1f, 1f);//Input.GetAxis("Horizontal");
-            float acceleration = accelarationInput * accelerationRate;
-            float steeringPower = steeringInput;//Input.GetAxis("Horizontal");
 
             // get the object steering direction
             float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
