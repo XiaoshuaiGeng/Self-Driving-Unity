@@ -27,10 +27,10 @@ public class keyboardController : MonoBehaviour
     [SerializeField]
     private float Fitness;
     [SerializeField]
-    private float distanceMultipler = 2.0f;
+    private float distanceMultipler = 4.0f;
     [SerializeField]
-    private float avgSpeedMultiplier = 0.5f;
-    private float sensorMultiplier = 0.3f;
+    private float avgSpeedMultiplier = 1.5f;
+    private float sensorMultiplier = 1f;
 
     [Header("Data")]
     public float distanceTravelled;
@@ -94,7 +94,7 @@ public class keyboardController : MonoBehaviour
             // print("Vertical: " + Input.GetAxis("Vertical") + ", Horizontal: " + Input.GetAxis("Horizontal"));
             //float acceleration = Random.Range(0f, 1f) * accelerationRate;
             //float steeringPower = Random.Range(-1f, 1f);//Input.GetAxis("Horizontal");
-            float acceleration = (accelarationInput + 0.5f) * accelerationRate;
+            float acceleration = accelarationInput * accelerationRate;
             float steeringPower = steeringInput;//Input.GetAxis("Horizontal");
 
             // get the object steering direction
@@ -143,11 +143,13 @@ public class keyboardController : MonoBehaviour
         if (timeLived > 20 && Fitness < 20) {
             Death();
         }
-        // if()
-
-        if(Fitness > 1000){
+        if(transform.position == lastPosition){
             Death();
         }
+
+        // if(Fitness > 1000){
+        //     Death();
+        // }
     }
 
 
