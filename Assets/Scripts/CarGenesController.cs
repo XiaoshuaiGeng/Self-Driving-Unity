@@ -101,19 +101,19 @@ public class CarGenesController : MonoBehaviour
             
         }
 
-        // for (int i = 0; i < numOfWorstAgentSelections; i++){
+        for (int i = 0; i < numOfWorstAgentSelections; i++){
 
-        //     int last = neuralNetworkPopulation.Length - (i+1);
-        //     // last -= i;
+            int last = neuralNetworkPopulation.Length - (i+1);
+            // last -= i;
 
-        //     int f = Mathf.RoundToInt(neuralNetworkPopulation[last].fitness * 10);
+            int f = Mathf.RoundToInt(neuralNetworkPopulation[last].fitness * 10);
 
-        //     for (int c = 0; c < f; c++)
-        //     {
-        //         genePool.Add(last);
-        //     }
+            for (int c = 0; c < f; c++)
+            {
+                genePool.Add(last);
+            }
 
-        // }
+        }
 
         return newPopulation;
     }
@@ -126,14 +126,14 @@ public class CarGenesController : MonoBehaviour
 
         
         // for (int i = 0; i < numberOfChildrenCrossovered; i+= 2){
-        for (int i = naturalSelected; i < population - numberOfChildrenCrossovered; i++){
+        for (int i = naturalSelected; i < population - 20; i++){
             int AIndex = i;
             int BIndex = i;
 
             if (genePool.Count >= 1)
             {
-                for (int l = 0; l < 100; l++)
-                // while(true)
+                // for (int l = 0; l < 100; l++)
+                while(true)
                 {
                     AIndex = genePool[Random.Range(0, genePool.Count)];
                     BIndex = genePool[Random.Range(0, genePool.Count)];

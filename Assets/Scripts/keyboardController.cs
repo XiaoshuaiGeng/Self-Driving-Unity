@@ -94,7 +94,7 @@ public class keyboardController : MonoBehaviour
             // print("Vertical: " + Input.GetAxis("Vertical") + ", Horizontal: " + Input.GetAxis("Horizontal"));
             //float acceleration = Random.Range(0f, 1f) * accelerationRate;
             //float steeringPower = Random.Range(-1f, 1f);//Input.GetAxis("Horizontal");
-            float acceleration = accelarationInput * accelerationRate;
+            float acceleration = (accelarationInput + 0.5f) * accelerationRate;
             float steeringPower = steeringInput;//Input.GetAxis("Horizontal");
 
             // get the object steering direction
@@ -134,18 +134,20 @@ public class keyboardController : MonoBehaviour
      * Current position - last position 
      */
     private void calculateFitness() {
+
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         averageSpeed = distanceTravelled / timeLived;
 
         Fitness = (distanceTravelled * distanceMultipler) + (averageSpeed * avgSpeedMultiplier) + ((leftSensor + frontSensor + rightSensor) / 3 * sensorMultiplier);
 
-        // if (timeLived > 20 && Fitness < 40) {
-        //     Death();
-        // }
+        if (timeLived > 20 && Fitness < 20) {
+            Death();
+        }
+        // if()
 
-        // if(Fitness > 1000){
-        //     Death();
-        // }
+        if(Fitness > 1000){
+            Death();
+        }
     }
 
 
